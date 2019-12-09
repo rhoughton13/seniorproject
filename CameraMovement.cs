@@ -6,18 +6,18 @@ public class CameraMovement : MonoBehaviour
 {
     public float speed = 8;
     public float doubleSpeed = 16;
+    public int creatable;
 
     void Start()
     {
-        
+        creatable = 0;
     }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.N) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
         {
-            CreateObject();
-            StartCoroutine(waiter());
+            creatable++;
         }
         if (Input.GetKey(KeyCode.UpArrow) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
         {
@@ -51,18 +51,27 @@ public class CameraMovement : MonoBehaviour
         {
             transform.Rotate(Vector3.up, doubleSpeed * Time.deltaTime);
         }
+        if (creatable == 1)
+        {
+            CreateObject();
+            StartCoroutine(Waiter());
+        }
     }
     public void CreateObject()
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.AddComponent(typeof(Rigidbody));
         cube.AddComponent(typeof(BoxMovement));
+        cube.GetComponent<Rigidbody>().isKinematic = false;
+        var cubeRenderer = cube.GetComponent<Renderer>();
+        cubeRenderer.material.SetColor("_Color", Color.black);
         cube.transform.localScale = new Vector3(10f, 10f, 10f);
-        cube.transform.position = new Vector3(0, 0.5f, 0);
+        cube.transform.position = new Vector3(0, 5f, 0);
     }
 
-    IEnumerator waiter()
+    IEnumerator Waiter()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
+        creatable = 0;
     }
 }
