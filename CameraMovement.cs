@@ -101,7 +101,7 @@ public class CameraMovement : MonoBehaviour
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.AddComponent(typeof(Rigidbody));
-        cube.AddComponent(typeof(Movement2));
+        cube.AddComponent(typeof(BoxMovement));
         cube.GetComponent<Rigidbody>().isKinematic = false;
         var cubeRenderer = cube.GetComponent<Renderer>();
         cubeRenderer.material.SetColor("_Color", Color.black);
@@ -113,7 +113,7 @@ public class CameraMovement : MonoBehaviour
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.AddComponent(typeof(Rigidbody));
-        cube.AddComponent(typeof(Movement2));
+        cube.AddComponent(typeof(BoxMovement));
         cube.transform.localScale = new Vector3(2f, 2f, 2f);
         cube.transform.position = new Vector3(0, 0.5f, 0);
     }
