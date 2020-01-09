@@ -7,17 +7,24 @@ public class CameraMovement : MonoBehaviour
     public float speed = 8;
     public float doubleSpeed = 16;
     public int creatable;
-    public Camera MainCamera, Camera2;//You must create Camera2 in your Unity project and position it to your liking. 
+    public Camera MainCamera, Camera2;//You must create Camera2 for now. Will add Command that creates new camera l8r. 
 
     void Start()
     {
         creatable = 0;
         MainCamera.gameObject.SetActive(true);
+        GameObject.Find("Camera2").transform.position = new Vector3(0.88f, 13.60f, -1.63f);//Still need to find best position
+        
         Camera2.gameObject.SetActive(false);
     }
 
     void Update()
     {
+    
+        if(Input.GetKey(KeyCode.M) && (Input.GetKey(KeyCode.LeftControl)))//Puts .jpg in project folder. 
+        {
+            ScreenCapture.CaptureScreenshot("UnityProj.jpg");
+        }
         if (Input.GetKey(KeyCode.L) && (Input.GetKey(KeyCode.LeftControl)))//Left CTRL + L to create Crate
         {
             CreateCrate();
