@@ -36,19 +36,19 @@ public class BoxMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed);
+                transform.Translate(Vector3.back * Time.deltaTime * speed);
             }
             if (Input.GetKey(KeyCode.DownArrow) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             {
-                transform.Translate(Vector3.back * Time.deltaTime * speed);
+                transform.Translate(Vector3.forward * Time.deltaTime * speed);
             }
             if (Input.GetKey(KeyCode.RightArrow) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             {
-                transform.Translate(Vector3.right * Time.deltaTime * speed);
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
             if (Input.GetKey(KeyCode.LeftArrow) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             {
-                transform.Translate(Vector3.left * Time.deltaTime * speed);
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
             }
             if (Input.GetKey(KeyCode.W) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             {
